@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Overlay Widgets — 视觉稿</title>
+<style>
+  :root{
+    --ink1:#2A0F28;
+    --ink2:#150817;
+    --ink3:#06030A;
+    --acc:#FF2D95;
+    --txt:#FFF0F7;
+    --muted:rgba(255,255,255,.42);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;width:1920px;height:1080px;overflow:hidden}
+  body{
+    background:
+      radial-gradient(1200px 700px at 62% 26%, #33404F 0%, #1D2632 45%, #0B1017 100%);
+    font-family:"Segoe UI","Microsoft YaHei",sans-serif;
+  }
+
+  .w{
+    position:absolute;
+    background:linear-gradient(135deg,var(--ink1) 0%,var(--ink2) 55%,var(--ink3) 100%);
+    box-shadow:0 18px 50px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.07);
+    color:var(--txt);
+  }
+
+  /* ---------- 1. 条幅 ---------- */
+  .banner{
+    left:60px; top:70px; width:1000px; height:88px;
+    border-radius:30px;
+    display:flex; align-items:center; gap:22px;
+    padding:0 34px;
+  }
+  .banner .cover{
+    width:56px;height:56px;border-radius:50%;flex:none;
+    background:linear-gradient(135deg,#FF2D95,#8A2BE2 55%,#26063F);
+    border:1.5px solid rgba(255,240,247,.9);
+    display:flex;align-items:center;justify-content:center;
+    font-size:24px;color:#fff;opacity:.95;
+  }
+  .banner .meta{flex:none;width:230px}
+  .banner .t1{font-size:18px;font-weight:700;letter-spacing:.2px;line-height:1.2}
+  .banner .t2{font-size:8px;font-weight:700;color:var(--acc);letter-spacing:2.2px;margin-top:5px}
+  .banner .bar{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.16);position:relative}
+  .banner .bar i{position:absolute;left:0;top:0;height:100%;width:38%;border-radius:2px;background:var(--acc)}
+  .banner .bar b{position:absolute;left:38%;top:50%;width:11px;height:11px;margin:-5.5px 0 0 -5.5px;border-radius:50%;background:var(--acc);box-shadow:0 0 14px rgba(255,45,149,.8)}
+  .banner .time{flex:none;font-size:9px;font-weight:600;letter-spacing:.5px;color:var(--muted);white-space:nowrap}
+  .banner .time em{font-style:normal;color:var(--acc)}
+
+  /* ---------- 2. 播放卡片 ---------- */
+  .card{
+    left:60px; top:430px; width:420px; height:170px;
+    border-radius:30px; padding:22px 26px;
+  }
+  .card .row{display:flex;gap:20px;align-items:center}
+  .card .cover{
+    width:88px;height:88px;border-radius:20px;flex:none;
+    background:linear-gradient(135deg,#FF2D95,#8A2BE2 55%,#26063F);
+    border:1.5px solid rgba(255,240,247,.85);
+    display:flex;align-items:center;justify-content:center;font-size:38px;color:#fff;
+    box-shadow:0 8px 24px rgba(255,45,149,.25);
+  }
+  .card .t1{font-size:20px;font-weight:700;line-height:1.25}
+  .card .t2{font-size:9px;font-weight:700;color:var(--acc);letter-spacing:2.2px;margin-top:6px}
+  .card .bar{margin-top:16px;height:3px;border-radius:2px;background:rgba(255,255,255,.16);position:relative}
+  .card .bar i{position:absolute;left:0;top:0;height:100%;width:42%;border-radius:2px;background:var(--acc)}
+  .card .bar b{position:absolute;left:42%;top:50%;width:11px;height:11px;margin:-5.5px 0 0 -5.5px;border-radius:50%;background:var(--acc);box-shadow:0 0 14px rgba(255,45,149,.8)}
+  .card .time{display:flex;justify-content:space-between;margin-top:9px;font-size:9px;font-weight:600;color:var(--muted);letter-spacing:.5px}
+  .card .time em{font-style:normal;color:var(--acc)}
+
+  /* ---------- 3. 歌词 ---------- */
+  .lyrics{
+    left:1400px; top:400px; width:460px; height:260px;
+    border-radius:30px; padding:30px 34px;
+    display:flex;flex-direction:column;justify-content:center;gap:16px;
+  }
+  .lyrics div{position:relative;font-size:15px;font-weight:400;color:rgba(255,255,255,.26);letter-spacing:.4px}
+  .lyrics div.now{font-size:19px;font-weight:700;color:var(--txt);text-shadow:0 0 18px rgba(255,45,149,.55)}
+  .lyrics div.now::before{content:"";position:absolute;left:0;width:3px;height:22px;background:var(--acc);border-radius:2px;margin-left:-20px}
+
+  /* ---------- 4. 频谱 ---------- */
+  .spectrum{
+    position:absolute;
+    left:0; bottom:0; width:1920px; height:140px;
+    background:none; box-shadow:none;
+  }
+  .spectrum svg{display:block}
+</style>
+</head>
+<body>
+
+<!-- 1. 条幅 -->
+<div class="w banner">
+  <div class="cover">♪</div>
+  <div class="meta">
+    <div class="t1">Neon Tokyo</div>
+    <div class="t2">AMANE · 雨音</div>
+  </div>
+  <div class="bar"><i></i><b></b></div>
+  <div class="time"><em>01:42</em> / 04:08</div>
+</div>
+
+<!-- 2. 播放卡片 -->
+<div class="w card">
+  <div class="row">
+    <div class="cover">♪</div>
+    <div>
+      <div class="t1">Neon Tokyo</div>
+      <div class="t2">AMANE · 雨音</div>
+    </div>
+  </div>
+  <div class="bar"><i></i><b></b></div>
+  <div class="time"><em>01:42</em><span>04:08</span></div>
+</div>
+
+<!-- 3. 歌词 -->
+<div class="w lyrics">
+  <div>街の灯りが　ゆっくり溶けて</div>
+  <div class="now">君の声だけ　まだ残ってる</div>
+  <div>夜が明けるまで　ここにいて</div>
+  <div>忘れないように　歌ってる</div>
+</div>
+
+<!-- 4. 频谱 -->
+<div class="spectrum">
+  <svg id="spec" width="1920" height="140" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+
+<script>
+(function(){
+  const NS="http://www.w3.org/2000/svg";
+  const svg=document.getElementById("spec");
+  const W=1920,H=140;
+  function mulberry32(a){return function(){a|=0;a=(a+0x6D2B79F5)|0;let t=Math.imul(a^(a>>>15),1|a);t=(t+Math.imul(t^(t>>>7),61|t))^t;return((t^(t>>>14))>>>0)/4294967296}}
+  const rnd=mulberry32(20261026);
+  const spacing=7, barW=3;
+  for(let x=0;x<W;x+=spacing){
+    const t=x/W;
+    // 两端收窄
+    const env=Math.min(1,Math.min(t,1-t)*8+0.1);
+    const h=(4+rnd()*100)*env;
+    const line=document.createElementNS(NS,"line");
+    line.setAttribute("x1",x); line.setAttribute("y1",H);
+    line.setAttribute("x2",x); line.setAttribute("y2",H-h);
+    line.setAttribute("stroke","#FF2D95");
+    line.setAttribute("stroke-width",barW);
+    line.setAttribute("stroke-linecap","round");
+    line.setAttribute("opacity",(0.25+0.65*(h/100)).toFixed(2));
+    svg.appendChild(line);
+  }
+})();
+</script>
+
+</body>
+</html>

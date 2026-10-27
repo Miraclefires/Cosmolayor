@@ -1,0 +1,328 @@
+/* 控制面板 —— 深色工具界面，主色只用在开关和选中态上，不跟叠加层抢戏 */
+
+:root {
+  --acc: #FF2D95;
+  --acc-rgb: 255, 45, 149;
+  --bg: #0A0C11;
+  --panel: #101319;
+  --card: rgba(255, 255, 255, .035);
+  --line: rgba(255, 255, 255, .075);
+  --txt: #E9ECF2;
+  --dim: rgba(255, 255, 255, .42);
+  --dim2: rgba(255, 255, 255, .26);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  display: flex;
+  background:
+    radial-gradient(900px 520px at 78% -8%, rgba(var(--acc-rgb), .12), transparent 60%),
+    radial-gradient(700px 500px at 0% 108%, rgba(120, 140, 255, .08), transparent 60%),
+    var(--bg);
+  color: var(--txt);
+  font: 13px/1.5 "Segoe UI", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+/* ---------------- 左侧 ---------------- */
+aside {
+  width: 392px; flex: none;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 22px 22px 40px;
+  border-right: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255, 255, 255, .022), transparent 40%);
+}
+aside::-webkit-scrollbar { width: 8px; }
+aside::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, .1); border-radius: 8px; }
+
+.brand { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.brand h1 { margin: 0; font-size: 15px; font-weight: 700; letter-spacing: .3px; }
+.brand .tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  color: var(--acc);
+  border: 1px solid rgba(var(--acc-rgb), .35);
+  background: rgba(var(--acc-rgb), .1);
+  border-radius: 5px; padding: 1px 6px;
+}
+.sub { color: var(--dim2); font-size: 11px; margin: 0 0 18px; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px 14px 12px;
+  margin-bottom: 12px;
+}
+.card > h2 {
+  margin: 0 0 10px;
+  font-size: 10.5px; font-weight: 700;
+  letter-spacing: 1.6px;
+  color: var(--dim);
+  text-transform: uppercase;
+}
+
+/* 正在播放 */
+.now { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
+.now .cov {
+  width: 46px; height: 46px; flex: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #FF2D95, #8A2BE2 55%, #26063F);
+  display: grid; place-items: center;
+  font-size: 18px; color: #fff;
+  overflow: hidden; position: relative;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, .35);
+}
+.now .cov img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: none; }
+.now .cov.has-img img { display: block; }
+.now .cov.has-img span { display: none; }
+.now .txt { min-width: 0; }
+.now .t1 { font-size: 13.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.now .t2 { font-size: 11px; color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
+
+.bar { height: 3px; border-radius: 2px; background: rgba(255, 255, 255, .12); position: relative; }
+.bar i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 2px; background: var(--acc-grad, var(--acc)); }
+.times { display: flex; justify-content: space-between; margin-top: 6px; font-size: 10px; color: var(--dim2); letter-spacing: .4px; }
+
+.status {
+  display: flex; align-items: center; gap: 7px;
+  margin-top: 11px; font-size: 11px; color: var(--dim);
+}
+.dot { width: 7px; height: 7px; border-radius: 50%; background: #5EDC8B; box-shadow: 0 0 8px rgba(94, 220, 139, .7); }
+.dot.warn { background: #F2C14E; box-shadow: 0 0 8px rgba(242, 193, 78, .6); }
+.dot.bad { background: #F0555A; box-shadow: 0 0 8px rgba(240, 85, 90, .6); }
+
+/* 开关行 */
+.row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, .045);
+}
+.row:last-child { border-bottom: 0; }
+.row.sub { padding-left: 34px; }
+.row.sub .ico { background: transparent; }
+.row.sub .lbl b { font-weight: 500; font-size: 12px; }
+
+/* 组件行上的次级菜单开关（角标 ▾） */
+.sub-btn {
+  flex: none;
+  width: 22px; height: 22px;
+  border: 0; border-radius: 6px;
+  background: rgba(255, 255, 255, .05);
+  color: var(--dim);
+  font-size: 10px; line-height: 1;
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease, color .2s ease;
+}
+.sub-btn:hover { color: var(--txt); background: rgba(255, 255, 255, .1); }
+.sub-btn.open {
+  transform: rotate(180deg);
+  color: var(--txt);
+  background: rgba(var(--acc-rgb), .18);
+}
+.sub-wrap { display: none; }
+.sub-wrap.open { display: block; }
+.row .ico {
+  width: 24px; height: 24px; flex: none;
+  display: grid; place-items: center;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, .05);
+  font-size: 12px;
+  color: var(--dim);
+}
+.row .lbl { flex: 1; min-width: 0; }
+.row .lbl b { display: block; font-size: 12.5px; font-weight: 600; }
+.row .lbl small { display: block; font-size: 10.5px; color: var(--dim2); }
+
+.sw { position: relative; width: 40px; height: 22px; flex: none; }
+.sw input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.sw span {
+  position: absolute; inset: 0;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, .13);
+  transition: background .2s ease;
+  pointer-events: none;
+}
+.sw span::after {
+  content: "";
+  position: absolute; top: 3px; left: 3px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform .22s cubic-bezier(.2, .8, .2, 1);
+}
+.sw input:checked + span { background: var(--acc); }
+.sw input:checked + span::after { transform: translateX(18px); }
+.sw input:focus-visible + span { outline: 2px solid rgba(var(--acc-rgb), .5); outline-offset: 2px; }
+
+/* 分段选择 */
+.seg-group { margin-bottom: 12px; }
+.seg-group:last-child { margin-bottom: 0; }
+.seg-group .k { font-size: 11px; color: var(--dim); margin-bottom: 6px; }
+.seg { display: flex; gap: 3px; padding: 3px; border-radius: 10px; background: rgba(255, 255, 255, .055); }
+.seg button {
+  flex: 1;
+  border: 0; border-radius: 8px;
+  padding: 7px 4px;
+  background: transparent;
+  color: var(--dim);
+  font: 600 11.5px/1 "Segoe UI", "Microsoft YaHei", sans-serif;
+  cursor: pointer;
+  transition: background .18s ease, color .18s ease;
+}
+.seg button:hover { color: var(--txt); }
+.seg button.on {
+  background: rgba(var(--acc-rgb), .18);
+  color: #fff;
+  box-shadow: inset 0 0 0 1px rgba(var(--acc-rgb), .32);
+}
+
+/* 卡片大小（滑杆 + 重置） */
+.cs-val { color: #fff; font-weight: 700; margin-left: 4px; }
+.size-row { display: flex; align-items: center; gap: 8px; }
+.size-row input[type=range] {
+  flex: 1; min-width: 0; height: 20px;
+  accent-color: var(--acc);
+  cursor: pointer;
+}
+.size-row button {
+  flex: none;
+  border: 0; border-radius: 8px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, .07);
+  color: var(--dim);
+  font: 600 11.5px/1 "Segoe UI", "Microsoft YaHei", sans-serif;
+  cursor: pointer;
+}
+.size-row button:hover { color: var(--txt); background: rgba(255, 255, 255, .12); }
+/* 第十三轮：滑杆行前面加个小标签，右边读数定宽（拖的时候数字不会把滑杆挤来挤去） */
+.sl-k { flex: none; width: 42px; font-size: 10.5px; color: var(--dim); }
+.size-row .cs-val { min-width: 46px; margin-left: 0; text-align: right; }
+.size-hint { margin-top: 6px; font-size: 10.5px; color: var(--dim); opacity: .75; }
+.size-hint.warn { color: #FFB020; opacity: 1; }
+/* 不支持某个功能时，原地换成的说明文字（比如圆角矩形不支持封面旋转） */
+.lbl small.tip { color: #FFB020; opacity: 1; letter-spacing: .2px; }
+
+/* 配色 */
+.swatches { display: flex; gap: 10px; }
+/* 开了「跟随封面」：手动色板置灰不可点 */
+.swatches.off { opacity: .35; pointer-events: none; filter: grayscale(.5); }
+.sw-item {
+  flex: 1;
+  border: 0; background: transparent; padding: 0;
+  cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  color: var(--dim2); font-size: 10.5px; font-weight: 600;
+}
+.sw-item .c {
+  width: 100%; height: 30px;
+  border-radius: 8px;
+  background: var(--c);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14);
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+.sw-item:hover .c { transform: translateY(-1px); }
+.sw-item.on { color: var(--txt); }
+.sw-item.on .c {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(0, 0, 0, .55), 0 6px 16px rgba(0, 0, 0, .45);
+}
+
+/* 诊断 */
+.diag { display: flex; flex-direction: column; }
+.drow {
+  display: flex; align-items: baseline; gap: 10px;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, .045);
+  font-size: 11px;
+}
+.drow:last-child { border-bottom: 0; }
+.drow span { flex: none; color: var(--dim2); }
+.drow b {
+  flex: 1; min-width: 0;
+  text-align: right;
+  font: 600 11px/1.4 Consolas, monospace;
+  color: rgba(255, 255, 255, .8);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.drow b.warn { color: #F2C14E; }
+.drow b.good { color: #5EDC8B; }
+
+/* 底部小字 */
+.hint { font-size: 10.5px; color: var(--dim2); line-height: 1.7; margin-top: 10px; }
+.hint code {
+  font-family: Consolas, monospace;
+  background: rgba(255, 255, 255, .07);
+  border-radius: 4px;
+  padding: 1px 5px;
+  color: rgba(255, 255, 255, .72);
+}
+.act {
+  display: flex; gap: 8px; margin-top: 10px;
+}
+.act button {
+  flex: 1;
+  padding: 9px 10px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, .045);
+  color: var(--txt);
+  font: 600 11.5px/1 "Segoe UI", "Microsoft YaHei", sans-serif;
+  cursor: pointer;
+  transition: background .18s, border-color .18s;
+}
+.act button:hover { background: rgba(255, 255, 255, .085); border-color: rgba(255, 255, 255, .16); }
+.act button.primary {
+  background: rgba(var(--acc-rgb), .16);
+  border-color: rgba(var(--acc-rgb), .38);
+}
+.act button.primary:hover { background: rgba(var(--acc-rgb), .26); }
+
+/* ---------------- 右侧预览 ---------------- */
+main {
+  flex: 1;
+  min-width: 0;
+  padding: 22px 24px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.preview-head {
+  display: flex; align-items: baseline; gap: 12px; flex: none;
+}
+.preview-head h2 { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: .3px; }
+.preview-head span { font-size: 11px; color: var(--dim2); }
+.preview-head .spacer { flex: 1; }
+.preview-head .badge-note {
+  font-size: 10.5px; color: var(--dim);
+  border: 1px solid var(--line); border-radius: 6px; padding: 2px 7px;
+}
+
+.preview {
+  position: relative;
+  width: 100%;
+  max-height: calc(100vh - 140px);
+  aspect-ratio: 16 / 9;
+  margin: auto 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .1);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .55);
+  background: #0B1017;
+}
+.preview iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.preview .empty {
+  position: absolute; inset: 0; display: none;
+  place-items: center; color: var(--dim2); font-size: 12px;
+}
+.preview.off .empty { display: grid; }
+.preview.off iframe { visibility: hidden; }
+
+.foot {
+  margin-top: auto;
+  display: flex; gap: 16px; align-items: center;
+  font-size: 10.5px; color: var(--dim2);
+  padding-top: 6px;
+}.foot .k { color: var(--dim); }

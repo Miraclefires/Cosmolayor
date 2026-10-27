@@ -1,0 +1,46 @@
+﻿# 文档与素材许可 · CC BY 4.0
+
+本仓库里的**说明文字和效果图**采用
+[Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.zh)
+许可；**代码**采用根目录 [`LICENSE`](LICENSE) 里的 MIT 许可。
+
+## 覆盖范围
+
+| 内容 | 许可 |
+|---|---|
+| `*.md` 文档（README、HANDOFF、docs/ 等）的正文 | **CC BY 4.0** |
+| 效果图 / 截图：`previews/`、`mockup.png`、`assets/` 里我们自己画的图 | **CC BY 4.0** |
+| 代码：`.py` `.js` `.css` `.html` `.cmd` `.ps1` | **MIT**（见 `LICENSE`） |
+
+## 转载要求
+
+可以自由复制、修改、商用，**唯一条件**是署名。建议格式：
+
+> 来源：<项目名>（<仓库地址>），作者 **11.2 / 天月焰**，许可 CC BY 4.0
+
+## 中文法律文本在哪
+
+CC BY 4.0 有**官方中文（简体）译本**，中文用户可以直接读：
+
+- 中文法律文本：<https://creativecommons.org/licenses/by/4.0/legalcode.zh-Hans>
+- 中文要点（人话版）：<https://creativecommons.org/licenses/by/4.0/deed.zh>
+
+> 英文原文：<https://creativecommons.org/licenses/by/4.0/legalcode>
+> CC 官方声明：译本仅供参考，**国际版以英文法律文本为准**。
+
+一句话版（不是法律条文，只帮你判断能不能用）：**随便用、随便改、能商用，只要署名**
+—— 署名要写清作者、来源链接和许可名称；改动过要说明改了什么。
+
+## 不在本许可范围内
+
+- **第三方商标、音乐封面、艺人肖像**：权利归各自所有者，本许可**不能再许可**它们。
+  仓库里出现的封面/截图仅用于展示程序效果；本项目作者另行取得了展示所用封面的使用许可，
+  但**这份许可不随仓库转让给下游使用者** —— 你要公开发布带封面的截图，请自行确认授权。
+- **引用的第三方数据/基准**（如 `docs/` 里提到的外部资料）：以原始来源的许可为准。
+
+## 许可全文
+
+- CC BY 4.0 中文：<https://creativecommons.org/licenses/by/4.0/legalcode.zh-Hans>
+- CC BY 4.0 英文（**以此为准**）：<https://creativecommons.org/licenses/by/4.0/legalcode>
+- 代码的 MIT 许可：[`LICENSE`](LICENSE)（文末附中文参考译文）
+

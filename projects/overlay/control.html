@@ -1,0 +1,117 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cosmolayor · 控制台</title>
+<link rel="stylesheet" href="css/control.css">
+</head>
+<body>
+
+<aside>
+  <div class="brand">
+    <h1>Cosmolayor</h1>
+    <span class="tag">v1.0</span>
+  </div>
+  <p class="sub">OBS 浏览器源 · 1920×1080 · 背景透明</p>
+
+  <div class="card">
+    <h2>正在播放</h2>
+    <div class="now">
+      <div class="cov" id="nowCover"><span>♪</span><img alt=""></div>
+      <div class="txt">
+        <div class="t1" id="nowTitle">—</div>
+        <div class="t2" id="nowArtist">—</div>
+      </div>
+    </div>
+    <div class="bar"><i id="nowFill"></i></div>
+    <div class="times"><span id="nowEl">--:--</span><span id="nowTot">--:--</span></div>
+    <div class="status"><i class="dot" id="stDot"></i><span id="stText">正在连接…</span></div>
+
+    <div class="row" style="border:0;padding:10px 0 0">
+      <div class="ico">▶</div>
+      <div class="lbl"><b>演示模式</b><small>用假歌名 / 假封面出画面，OBS 里也会显示</small></div>
+      <label class="sw"><input type="checkbox" id="swDemo"><span></span></label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>组件</h2>
+    <div id="compRows"></div>
+  </div>
+
+  <div class="card">
+    <h2>外观</h2>
+    <div id="segRows"></div>
+  </div>
+
+  <div class="card">
+    <h2>频谱</h2>
+    <div id="specRows"></div>
+  </div>
+
+  <div class="card">
+    <h2>配色</h2>
+    <div id="palRows"></div>
+    <div class="swatches" id="swatches"></div>
+    <div class="size-hint" id="palHint"></div>
+  </div>
+
+  <div class="card">
+    <h2>接入 OBS</h2>
+    <div class="act">
+      <button class="primary" id="btnCopy">复制叠加层地址</button>
+      <button id="btnReload">重载预览</button>
+    </div>
+    <div class="hint">
+      OBS：来源 → 加号 → 浏览器；宽 <code>1920</code> 高 <code>1080</code>。<br>
+      地址填这一行：<br>
+      <code id="urlText">—</code><br>
+      勾「源不可见时关闭」，自定义 CSS 留空。<br>
+      <b>改过叠加层的代码后，右键源 →「刷新页面」一次</b>（不然 OBS 还在跑旧代码）。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>诊断</h2>
+    <div class="diag">
+      <div class="drow"><span>数据桥</span><b id="dPs">—</b></div>
+      <div class="drow"><span>轮询间隔</span><b id="dIv">—</b></div>
+      <div class="drow"><span>媒体会话</span><b id="dRaw">—</b></div>
+      <div class="drow"><span>进度来源</span><b id="dPos">—</b></div>
+      <div class="drow"><span>音频采集</span><b id="dSpec">—</b></div>
+      <div class="drow"><span>封面缓存</span><b id="dCov">—</b></div>
+    </div>
+    <div class="act">
+      <button id="btnRestartBridge">重启数据桥</button>
+      <button id="btnDiag">导出诊断</button>
+    </div>
+    <div class="hint">
+      放歌后「媒体会话」应显示 <code>播放中</code> 和程序名（cloudmusic.exe / Spotify）。<br>
+      「进度来源」：<code>真实 · 网易云日志</code> = 读 elog；<code>估算（兜底）</code> = 读不到日志时按墙钟推算。
+    </div>
+  </div>
+</aside>
+
+<main>
+  <div class="preview-head">
+    <h2>实时预览</h2>
+    <span>1920×1080</span>
+    <span class="spacer"></span>
+    <span class="badge-note">预览加的是假背景，OBS 里是透明的</span>
+  </div>
+  <div class="preview" id="preview">
+    <iframe id="frame" title="叠加层预览"></iframe>
+    <div class="empty">本地服务没起来 —— 双击 start.cmd，再刷新这个页面</div>
+  </div>
+  <div class="foot">
+    <span class="k">状态</span><span id="footState">—</span>
+  </div>
+</main>
+
+<script src="js/palettes.js"></script>
+<script src="js/control.js"></script>
+</body>
+</html>
+
+

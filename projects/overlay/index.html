@@ -1,0 +1,56 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cosmolayor · 直播叠加层</title>
+<link rel="stylesheet" href="css/overlay.css">
+</head>
+<body>
+<div id="stage">
+
+  <!-- 4. 频谱（通栏 / 窄条） -->
+  <div class="spectrum-layer" id="specLayer"><canvas id="spec"></canvas></div>
+
+  <!-- 1. 条幅：封面 / 曲名 / 歌手 / 进度条 / 时长（顺序固定，歌手不再被挤） -->
+  <div class="w banner" id="banner">
+    <div class="cover" id="bannerCover"><span class="note">&#9834;</span><img alt=""></div>
+    <div class="meta">
+      <div class="t1" id="bannerTitleBox"><span id="bannerTitle">—</span></div>
+    </div>
+    <div class="t2" id="bannerArtistBox"><span id="bannerArtist">—</span></div>
+    <div class="bar" id="bannerBar"><i id="bannerFill"></i><b id="bannerThumb"></b></div>
+    <div class="time"><em id="bannerEl">--:--</em> / <span id="bannerTot">--:--</span></div>
+  </div>
+
+  <!-- 2. 播放卡片（底部带一条小频谱，开关在面板「卡片」次级菜单） -->
+  <div class="w card" id="card">
+    <div class="row">
+      <div class="cover" id="cardCover"><span class="note">&#9834;</span><img alt=""></div>
+      <div class="meta">
+        <div class="t1" id="cardTitleBox"><span id="cardTitle">—</span></div>
+        <div class="t2" id="cardArtist">—</div>
+      </div>
+    </div>
+    <div class="bar"><i id="cardFill"></i><b id="cardThumb"></b></div>
+    <div class="time"><em id="cardEl">--:--</em><span id="cardTot">--:--</span></div>
+    <canvas class="card-spec" id="cardSpec"></canvas>
+  </div>
+
+  <!-- 3. 歌词（第十一轮删掉：不再做歌词面板） -->
+
+  <!-- 4. 角标 -->
+  <div class="badge" id="badge"></div>
+
+</div>
+<div id="dbg"></div>
+
+<script src="js/palettes.js"></script>
+<script src="js/autocolor.js"></script>
+<script src="js/badge.js"></script>
+<script src="js/fft.js"></script>
+<script src="js/spectrum.js"></script>
+<script src="js/overlay.js"></script>
+</body>
+</html>
+

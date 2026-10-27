@@ -1,0 +1,10 @@
+# 本项目不依赖任何第三方 Python 包（零依赖，标准库即可）。
+#
+# 之前的四个依赖已全部换成自写实现：
+#   numpy                → 删掉：FFT 挪到页面，js/fft.js 自写 radix-2
+#   pyaudiowpatch        → audio.py 用 ctypes 直接调 WASAPI/COM 录回环
+#   winrt-*              → tools/cover-fetch.cs 自写 C#，用系统 csc.exe 现场编译
+#   netease-cloudmusic-detector → netease.py 自写 elog 解码 + 状态机
+#
+# 所以这个文件现在只是"说明"，不用 pip install 任何东西。
+# 需要的系统组件：Windows 10/11 自带的 .NET Framework 4.x（csc.exe）与 WinMetadata。
