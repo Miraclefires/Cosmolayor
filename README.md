@@ -2,7 +2,7 @@
 
 **给 OBS 用的直播叠加层。** 一个浏览器源，四个组件，零第三方依赖，数据全在本机（主要为自用）；使用时请打开相应音乐软件的开启SMTC选项。
 
-`v1.0.0` · 作者 **11.2 / 天月焰** · 代码 MIT、文档与效果图 CC BY 4.0
+`v1.0.2` · 作者 **11.2 / 天月焰** · 代码 MIT、文档与效果图 CC BY 4.0
 
 ![角标](projects/overlay/previews/github/01-corner-badge.png)
 ![条幅](projects/overlay/previews/github/02-now-playing-bar.png)
