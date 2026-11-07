@@ -4,7 +4,7 @@
 
 `v1.1.0` · 作者 **11.2 / 天月焰** · 代码 MIT、文档与效果图 CC BY 4.0
 
-**1.1.0 现已发布** 新增背景渐变透明，频谱样式以及优化颜色抓取算法。
+**v1.1.0 现已发布** 新增背景渐变透明，频谱样式以及优化颜色抓取算法。
 
 ![角标](projects/overlay/previews/github/01-corner-badge.png)
 ![条幅](projects/overlay/previews/github/02-now-playing-bar.png)
