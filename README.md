@@ -2,7 +2,9 @@
 
 **给 OBS 用的直播叠加层。（Layor没错 不是layer(经典复刻)）** 一个浏览器源，四个组件，零第三方依赖，数据全在本机（主要为自用）；使用时请打开相应音乐软件的开启SMTC选项。
 
-`v1.0.2` · 作者 **11.2 / 天月焰** · 代码 MIT、文档与效果图 CC BY 4.0
+`v1.1.0` · 作者 **11.2 / 天月焰** · 代码 MIT、文档与效果图 CC BY 4.0
+
+**1.1.0 现已发布 新增背景渐变透明，频谱样式以及优化颜色抓取算法。
 
 ![角标](projects/overlay/previews/github/01-corner-badge.png)
 ![条幅](projects/overlay/previews/github/02-now-playing-bar.png)
@@ -83,5 +85,5 @@
 
 - 歌词（待定）
 
-*Cosmolayor v1.0.2 · 2026-10-27*
-*ok 我写完了，危区探遗，启动！*
+*Cosmolayor v1.1.2 · 2026-11-7*
+*羽中你能不能把你那危区探遗好好优化一下？*
